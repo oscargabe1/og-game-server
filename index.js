@@ -17,11 +17,14 @@ const SocketIO = require('socket.io');
 const { Socket } = require('dgram');
 const io = SocketIO(server);
 
-const {message} = require('./socket');
+const {message, userConfig} = require('./sockets/socket');
 
 io.on('connection', (socket)=>{
     console.log("new connection");
     io.emit('data-assignment',{name:new Date().getTime()})
+
+
     
     message(socket,io);
+    userConfig(socket,io);
 })
